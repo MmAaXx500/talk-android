@@ -111,23 +111,33 @@ class OfflineFirstChatRepository @Inject constructor(
 
             newXChatLastCommonRead = conversationModel.lastCommonReadMessage
 
-            val fieldMap = getFieldMap(
-                lookIntoFuture = false,
-                includeLastKnown = true,
-                setReadMarker = true,
-                lastKnown = null
-            )
-            withNetworkParams.putSerializable(BundleKeys.KEY_FIELD_MAP, fieldMap)
-            withNetworkParams.putString(BundleKeys.KEY_ROOM_TOKEN, conversationModel.token)
+            Log.d(TAG, "conversationModel.lastReadMessage:" + conversationModel.lastReadMessage)
 
-            sync(withNetworkParams)
+            var newestMessageId = chatDao.getNewestMessageId(internalConversationId)
+            Log.d(TAG, "newestMessageId: $newestMessageId")
 
-            val newestMessageId = chatDao.getNewestMessageId(internalConversationId)
-            Log.d(TAG, "newestMessageId after sync: $newestMessageId")
+            if (conversationModel.lastReadMessage.toLong() != newestMessageId) {
+                Log.d(TAG, "An online request is made because chat is not up to date")
+
+                // set up field map to load the newest 100 messages
+                val fieldMap = getFieldMap(
+                    lookIntoFuture = false,
+                    includeLastKnown = true,
+                    setReadMarker = true,
+                    lastKnown = null
+                )
+                withNetworkParams.putSerializable(BundleKeys.KEY_FIELD_MAP, fieldMap)
+                withNetworkParams.putString(BundleKeys.KEY_ROOM_TOKEN, conversationModel.token)
+
+                sync(withNetworkParams)
+
+                newestMessageId = chatDao.getNewestMessageId(internalConversationId)
+                Log.d(TAG, "newestMessageId after sync: $newestMessageId")
+            }
 
             showLast100MessagesBeforeAndEqual(
                 internalConversationId,
-                chatDao.getNewestMessageId(internalConversationId)
+                newestMessageId
             )
 
             // delay is a dirty workaround to make sure messages are added to adapter on initial load before dealing
