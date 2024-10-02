@@ -129,10 +129,13 @@ class OfflineFirstChatRepository @Inject constructor(
                 withNetworkParams.putSerializable(BundleKeys.KEY_FIELD_MAP, fieldMap)
                 withNetworkParams.putString(BundleKeys.KEY_ROOM_TOKEN, conversationModel.token)
 
-                sync(withNetworkParams)
+                sync(withNetworkParams) // TODO: if sync fails, newestMessageId remains 0. -> needs error handling.
+                // Continuing with newestMessageId=0 loads the whole chat in longPolling loop
 
                 newestMessageId = chatDao.getNewestMessageId(internalConversationId)
                 Log.d(TAG, "newestMessageId after sync: $newestMessageId")
+            } else {
+                Log.d(TAG, "Initial online request is skipped because offline messages are up to date")
             }
 
             showLast100MessagesBeforeAndEqual(
