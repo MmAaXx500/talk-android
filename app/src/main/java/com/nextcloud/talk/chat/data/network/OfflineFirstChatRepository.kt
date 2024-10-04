@@ -38,8 +38,6 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
-import java.lang.Thread.sleep
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class OfflineFirstChatRepository @Inject constructor(
@@ -312,64 +310,55 @@ class OfflineFirstChatRepository @Inject constructor(
     private fun getMessagesFromServer(bundle: Bundle): Pair<Int, List<ChatMessageJson>>? {
         Log.d(TAG, "An online request is made!!!!!!!!!!!!!!!!!!!!")
         val fieldMap = bundle.getSerializable(BundleKeys.KEY_FIELD_MAP) as HashMap<String, Int>
-
-        var attempts = 0
-        while (attempts < 2) {
-            sleep(100)
-            try {
-                val result = network.pullChatMessages(credentials, urlForChatting, fieldMap)
-                    .subscribeOn(Schedulers.io())
-                    .timeout(5, TimeUnit.SECONDS)
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .map { it ->
-                        when (it.code()) {
-                            HTTP_CODE_OK -> {
-                                Log.d(TAG, "getMessagesFromServer HTTP_CODE_OK")
-                                newXChatLastCommonRead = it.headers()["X-Chat-Last-Common-Read"]?.let {
-                                    Integer.parseInt(it)
-                                }
-
-                                return@map Pair(
-                                    HTTP_CODE_OK,
-                                    (it.body() as ChatOverall).ocs!!.data!!
-                                )
+        try {
+            val result = network.pullChatMessages(credentials, urlForChatting, fieldMap)
+                .subscribeOn(Schedulers.io())
+                .retry(2)
+                .observeOn(AndroidSchedulers.mainThread())
+                .map { it ->
+                    when (it.code()) {
+                        HTTP_CODE_OK -> {
+                            Log.d(TAG, "getMessagesFromServer HTTP_CODE_OK")
+                            newXChatLastCommonRead = it.headers()["X-Chat-Last-Common-Read"]?.let {
+                                Integer.parseInt(it)
                             }
 
-                            HTTP_CODE_NOT_MODIFIED -> {
-                                Log.d(TAG, "getMessagesFromServer HTTP_CODE_NOT_MODIFIED")
+                            return@map Pair(
+                                HTTP_CODE_OK,
+                                (it.body() as ChatOverall).ocs!!.data!!
+                            )
+                        }
 
-                                return@map Pair(
-                                    HTTP_CODE_NOT_MODIFIED,
-                                    listOf<ChatMessageJson>()
-                                )
-                            }
+                        HTTP_CODE_NOT_MODIFIED -> {
+                            Log.d(TAG, "getMessagesFromServer HTTP_CODE_NOT_MODIFIED")
 
-                            HTTP_CODE_PRECONDITION_FAILED -> {
-                                Log.d(TAG, "getMessagesFromServer HTTP_CODE_PRECONDITION_FAILED")
+                            return@map Pair(
+                                HTTP_CODE_NOT_MODIFIED,
+                                listOf<ChatMessageJson>()
+                            )
+                        }
 
-                                return@map Pair(
-                                    HTTP_CODE_PRECONDITION_FAILED,
-                                    listOf<ChatMessageJson>()
-                                )
-                            }
+                        HTTP_CODE_PRECONDITION_FAILED -> {
+                            Log.d(TAG, "getMessagesFromServer HTTP_CODE_PRECONDITION_FAILED")
 
-                            else -> {
-                                return@map Pair(
-                                    HTTP_CODE_PRECONDITION_FAILED,
-                                    listOf<ChatMessageJson>()
-                                )
-                            }
+                            return@map Pair(
+                                HTTP_CODE_PRECONDITION_FAILED,
+                                listOf<ChatMessageJson>()
+                            )
+                        }
+
+                        else -> {
+                            return@map Pair(
+                                HTTP_CODE_PRECONDITION_FAILED,
+                                listOf<ChatMessageJson>()
+                            )
                         }
                     }
-                    .blockingSingle()
-                return result
-            } catch (e: Exception) {
-                Log.e(TAG, "attempt: $attempts Something went wrong when pulling chat messages", e)
-                attempts++
-                if (attempts == 2) {
-                    // TODO show user message failed
                 }
-            }
+                .blockingSingle()
+            return result
+        } catch (e: Exception) {
+            Log.e(TAG, "Something went wrong when pulling chat messages", e)
         }
         return null
     }
