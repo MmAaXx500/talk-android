@@ -38,6 +38,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class OfflineFirstChatRepository @Inject constructor(
@@ -108,6 +109,8 @@ class OfflineFirstChatRepository @Inject constructor(
     override fun loadInitialMessages(withNetworkParams: Bundle): Job =
         scope.launch {
             Log.d(TAG, "---- loadInitialMessages ------------")
+            Log.d(TAG, "conversationModel.internalId: " + conversationModel.internalId)
+
 
             newXChatLastCommonRead = conversationModel.lastCommonReadMessage
 
@@ -129,8 +132,12 @@ class OfflineFirstChatRepository @Inject constructor(
                 withNetworkParams.putSerializable(BundleKeys.KEY_FIELD_MAP, fieldMap)
                 withNetworkParams.putString(BundleKeys.KEY_ROOM_TOKEN, conversationModel.token)
 
-                sync(withNetworkParams) // TODO: if sync fails, newestMessageId remains 0. -> needs error handling.
+                val chatMessageEntities = sync(withNetworkParams) // TODO: if sync fails, newestMessageId remains 0. ->
+                // needs error handling.
                 // Continuing with newestMessageId=0 loads the whole chat in longPolling loop
+                if (chatMessageEntities == null) {
+                    Log.e(TAG, "initial loading of messages failed")
+                }
 
                 newestMessageId = chatDao.getNewestMessageId(internalConversationId)
                 Log.d(TAG, "newestMessageId after sync: $newestMessageId")
@@ -292,6 +299,7 @@ class OfflineFirstChatRepository @Inject constructor(
 
         fieldMap["timeout"] = if (lookIntoFuture) 30 else 0
         fieldMap["limit"] = 100
+        // fieldMap["limit"] = 5
         fieldMap["lookIntoFuture"] = if (lookIntoFuture) 1 else 0
         fieldMap["setReadMarker"] = if (setReadMarker) 1 else 0
 
@@ -383,7 +391,12 @@ class OfflineFirstChatRepository @Inject constructor(
             return null
         }
 
-        val result = getMessagesFromServer(bundle) ?: return listOf()
+        val result = getMessagesFromServer(bundle)
+        if (result == null) {
+            Log.d(TAG, "No result from server")
+            return null
+        }
+
         var chatMessagesFromSync: List<ChatMessageEntity>? = null
 
         val fieldMap = bundle.getSerializable(BundleKeys.KEY_FIELD_MAP) as HashMap<String, Int>
