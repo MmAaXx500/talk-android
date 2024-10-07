@@ -313,7 +313,7 @@ class OfflineFirstChatRepository @Inject constructor(
         try {
             val result = network.pullChatMessages(credentials, urlForChatting, fieldMap)
                 .subscribeOn(Schedulers.io())
-                .retry(2)
+                .retry(5)
                 .observeOn(AndroidSchedulers.mainThread())
                 .map { it ->
                     when (it.code()) {
