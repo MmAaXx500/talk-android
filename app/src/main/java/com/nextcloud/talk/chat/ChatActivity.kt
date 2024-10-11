@@ -560,7 +560,6 @@ class ChatActivity :
                 adapter?.notifyDataSetChanged()
                 Log.d("Julius", "End i: $i")
             }
-
         }
 
         this.lifecycleScope.launch {
@@ -2484,9 +2483,9 @@ class ChatActivity :
 
         if (currentConversation!!.remoteServer != null) {
             val apiVersion = ApiUtils.getSignalingApiVersion(conversationUser!!, intArrayOf(ApiUtils.API_V3, 2, 1))
-            ncApi!!.getSignalingSettings(
+            ncApi.getSignalingSettings(
                 credentials,
-                ApiUtils.getUrlForSignalingSettings(apiVersion, conversationUser!!.baseUrl, roomToken!!)
+                ApiUtils.getUrlForSignalingSettings(apiVersion, conversationUser!!.baseUrl, roomToken)
             ).blockingSubscribe(object : Observer<SignalingSettingsOverall> {
                 override fun onSubscribe(d: Disposable) {
                     // unused atm
@@ -3291,7 +3290,7 @@ class ChatActivity :
             val lon = data["longitude"]!!
             metaData =
                 "{\"type\":\"geo-location\",\"id\":\"geo:$lat,$lon\",\"latitude\":\"$lat\"," +
-                    "\"longitude\":\"$lon\",\"name\":\"$name\"}"
+                "\"longitude\":\"$lon\",\"name\":\"$name\"}"
         }
 
         when (type) {
@@ -3645,9 +3644,6 @@ class ChatActivity :
     override fun editTemporaryMessage(id: Int, newMessage: String) {
         messageInputViewModel.editQueuedMessage(currentConversation!!.internalId, id, newMessage)
         adapter?.notifyDataSetChanged() // TODO optimize this
-        // TODO disable messageInput cursor and have cursor active in the message with keyboard out - from marcel
-
-
     }
 
     override fun deleteTemporaryMessage(id: Int) {
