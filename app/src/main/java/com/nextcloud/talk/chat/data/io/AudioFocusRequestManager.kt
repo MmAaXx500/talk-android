@@ -13,6 +13,8 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.media.AudioFocusRequest
 import android.media.AudioManager
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 
@@ -59,6 +61,7 @@ class AudioFocusRequestManager(private val context: Context) {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private val focusRequest = AudioFocusRequest.Builder(duration)
         .setOnAudioFocusChangeListener(audioFocusChangeListener)
         .build()
@@ -72,13 +75,19 @@ class AudioFocusRequestManager(private val context: Context) {
             return
         }
 
-        val isGranted: Int =
+        val isGranted: Int = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             if (shouldRequestFocus) {
                 audioManager.requestAudioFocus(focusRequest)
             } else {
                 audioManager.abandonAudioFocusRequest(focusRequest)
             }
-
+        } else {
+            if (shouldRequestFocus) {
+                audioManager.requestAudioFocus(audioFocusChangeListener, AudioManager.STREAM_MUSIC, duration)
+            } else {
+                audioManager.abandonAudioFocus(audioFocusChangeListener)
+            }
+        }
         if (isGranted == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
             onGranted()
             handleBecomingNoisyBroadcast(shouldRequestFocus)

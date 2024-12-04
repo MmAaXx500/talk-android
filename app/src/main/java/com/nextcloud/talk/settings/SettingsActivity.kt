@@ -153,6 +153,10 @@ class SettingsActivity :
 
         setupLicenceSetting()
 
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+            binding.settingsIncognitoKeyboard.visibility = View.GONE
+        }
+
         binding.settingsScreenLockSummary.text = String.format(
             Locale.getDefault(),
             resources!!.getString(R.string.nc_settings_screen_lock_desc),
@@ -411,24 +415,28 @@ class SettingsActivity :
             }
         }
 
-        binding.settingsCallSound.setOnClickListener {
-            val intent = Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS)
-            intent.putExtra(Settings.EXTRA_APP_PACKAGE, BuildConfig.APPLICATION_ID)
-            intent.putExtra(
-                Settings.EXTRA_CHANNEL_ID,
-                NotificationUtils.NotificationChannels.NOTIFICATION_CHANNEL_CALLS_V4.name
-            )
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            binding.settingsCallSound.setOnClickListener {
+                val intent = Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS)
+                intent.putExtra(Settings.EXTRA_APP_PACKAGE, BuildConfig.APPLICATION_ID)
+                intent.putExtra(
+                    Settings.EXTRA_CHANNEL_ID,
+                    NotificationUtils.NotificationChannels.NOTIFICATION_CHANNEL_CALLS_V4.name
+                )
 
-            startActivity(intent)
-        }
-        binding.settingsMessageSound.setOnClickListener {
-            val intent = Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS)
-            intent.putExtra(Settings.EXTRA_APP_PACKAGE, BuildConfig.APPLICATION_ID)
-            intent.putExtra(
-                Settings.EXTRA_CHANNEL_ID,
-                NotificationUtils.NotificationChannels.NOTIFICATION_CHANNEL_MESSAGES_V4.name
-            )
-            startActivity(intent)
+                startActivity(intent)
+            }
+            binding.settingsMessageSound.setOnClickListener {
+                val intent = Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS)
+                intent.putExtra(Settings.EXTRA_APP_PACKAGE, BuildConfig.APPLICATION_ID)
+                intent.putExtra(
+                    Settings.EXTRA_CHANNEL_ID,
+                    NotificationUtils.NotificationChannels.NOTIFICATION_CHANNEL_MESSAGES_V4.name
+                )
+                startActivity(intent)
+            }
+        } else {
+            Log.w(TAG, "setupSoundSettings currently not supported for versions < Build.VERSION_CODES.O")
         }
     }
 
@@ -966,6 +974,11 @@ class SettingsActivity :
             appPreferences.setReadPrivacy(!isChecked)
         }
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            binding.settingsIncognitoKeyboardSwitch.isChecked = appPreferences.isKeyboardIncognito
+        } else {
+            binding.settingsIncognitoKeyboardSwitch.visibility = View.GONE
+        }
         binding.settingsIncognitoKeyboardSwitch.isChecked = appPreferences.isKeyboardIncognito
         binding.settingsIncognitoKeyboard.setOnClickListener {
             val isChecked = binding.settingsIncognitoKeyboardSwitch.isChecked

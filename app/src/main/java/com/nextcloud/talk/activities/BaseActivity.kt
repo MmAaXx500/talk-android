@@ -11,6 +11,7 @@ package com.nextcloud.talk.activities
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
@@ -20,6 +21,7 @@ import android.view.WindowManager
 import android.view.inputmethod.EditorInfo
 import android.webkit.SslErrorHandler
 import android.widget.EditText
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
@@ -94,7 +96,7 @@ open class BaseActivity : AppCompatActivity() {
     public override fun onResume() {
         super.onResume()
 
-        if (appPreferences.isKeyboardIncognito) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && appPreferences.isKeyboardIncognito) {
             val viewGroup = (findViewById<View>(android.R.id.content) as ViewGroup).getChildAt(0) as ViewGroup
             disableKeyboardPersonalisedLearning(viewGroup)
         }
@@ -135,6 +137,7 @@ open class BaseActivity : AppCompatActivity() {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private fun disableKeyboardPersonalisedLearning(viewGroup: ViewGroup) {
         var view: View?
         var editText: EditText

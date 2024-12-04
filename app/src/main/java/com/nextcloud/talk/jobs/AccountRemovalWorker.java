@@ -9,7 +9,9 @@ package com.nextcloud.talk.jobs;
 
 import android.app.NotificationManager;
 import android.content.Context;
+import android.os.Build;
 import android.util.Log;
+
 import com.nextcloud.talk.R;
 import com.nextcloud.talk.api.NcApi;
 import com.nextcloud.talk.application.NextcloudTalkApplication;
@@ -144,6 +146,7 @@ public class AccountRemovalWorker extends Worker {
 
                     @Override
                     public void onNext(Void aVoid) {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                             String groupName = String.format(
                                 getApplicationContext()
                                     .getResources()
@@ -158,6 +161,7 @@ public class AccountRemovalWorker extends Worker {
                                 notificationManager.deleteNotificationChannelGroup(
                                     Long.toString(crc32.getValue()));
                             }
+                        }
 
                         initiateUserDeletion(user);
                     }
