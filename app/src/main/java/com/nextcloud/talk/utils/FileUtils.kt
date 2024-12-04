@@ -99,7 +99,8 @@ object FileUtils {
         val cachedFile = File(context.cacheDir, filename)
 
         val aboveOrEqualAPI26Check =
-            !cachedFile.toPath().normalize().startsWith(context.cacheDir.toPath())
+                !cachedFile.toPath().normalize().startsWith(context.cacheDir.toPath())
+
 
         val isOutsideCacheDir = aboveOrEqualAPI26Check
 

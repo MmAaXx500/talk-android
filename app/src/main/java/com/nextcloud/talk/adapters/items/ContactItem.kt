@@ -166,7 +166,10 @@ class ContactItem(
         }
     }
 
-    private fun setGenericAvatar(holder: ContactItemViewHolder, roundPlaceholderDrawable: Int) {
+    private fun setGenericAvatar(
+        holder: ContactItemViewHolder,
+        roundPlaceholderDrawable: Int
+    ) {
         val avatar =
             viewThemeUtils.talk.themePlaceholderAvatar(
                 holder.binding.avatarView,
