@@ -263,6 +263,7 @@ class ChunkedFileUploader(
         }
     }
 
+    // @RequiresApi(Build.VERSION_CODES.O)
     private fun initHttpClient(okHttpClient: OkHttpClient, currentUser: User) {
         val okHttpClientBuilder: OkHttpClient.Builder = okHttpClient.newBuilder()
         okHttpClientBuilder.followRedirects(false)

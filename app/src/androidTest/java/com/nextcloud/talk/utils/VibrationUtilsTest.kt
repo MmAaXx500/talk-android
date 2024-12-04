@@ -7,6 +7,7 @@
 package com.nextcloud.talk.utils
 
 import android.content.Context
+import android.os.Build
 import android.os.VibrationEffect
 import android.os.Vibrator
 import org.junit.Before
@@ -33,13 +34,18 @@ class VibrationUtilsTest {
     @Test
     fun testVibrateShort() {
         VibrationUtils.vibrateShort(mockContext)
-        Mockito.verify(mockVibrator)
-            .vibrate(
-                VibrationEffect
-                    .createOneShot(
-                        VibrationUtils.SHORT_VIBRATE,
-                        VibrationEffect.DEFAULT_AMPLITUDE
-                    )
-            )
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            Mockito.verify(mockVibrator)
+                .vibrate(
+                    VibrationEffect
+                        .createOneShot(
+                            VibrationUtils.SHORT_VIBRATE,
+                            VibrationEffect.DEFAULT_AMPLITUDE
+                        )
+                )
+        } else {
+            Mockito.verify(mockVibrator).vibrate(VibrationUtils.SHORT_VIBRATE)
+        }
     }
 }

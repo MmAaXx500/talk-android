@@ -46,6 +46,7 @@ import android.widget.FrameLayout
 import android.widget.RelativeLayout
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.DrawableRes
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.collectAsState
@@ -3134,6 +3135,7 @@ class CallActivity : CallBaseActivity() {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     override fun onPictureInPictureModeChanged(isInPictureInPictureMode: Boolean, newConfig: Configuration) {
         super.onPictureInPictureModeChanged(isInPictureInPictureMode, newConfig)
         Log.d(TAG, "onPictureInPictureModeChanged")
@@ -3166,7 +3168,7 @@ class CallActivity : CallBaseActivity() {
     }
 
     private fun updatePictureInPictureActions(@DrawableRes iconId: Int, title: String?, requestCode: Int) {
-        if (isPipModePossible) {
+        if (isGreaterEqualOreo && isPipModePossible) {
             val actions = ArrayList<RemoteAction>()
             val icon = Icon.createWithResource(this, iconId)
             val intentFlag: Int = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {

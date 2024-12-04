@@ -33,7 +33,7 @@ android {
     namespace 'com.nextcloud.talk'
 
     defaultConfig {
-        minSdkVersion 26
+        minSdkVersion 24
         targetSdkVersion 34
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
