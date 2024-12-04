@@ -153,6 +153,10 @@ class SettingsActivity :
 
         setupLicenceSetting()
 
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+            binding.settingsIncognitoKeyboard.visibility = View.GONE
+        }
+
         binding.settingsScreenLockSummary.text = String.format(
             Locale.getDefault(),
             resources!!.getString(R.string.nc_settings_screen_lock_desc),
@@ -411,6 +415,7 @@ class SettingsActivity :
             }
         }
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             binding.settingsCallSound.setOnClickListener {
                 val intent = Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS)
                 intent.putExtra(Settings.EXTRA_APP_PACKAGE, BuildConfig.APPLICATION_ID)
@@ -430,7 +435,9 @@ class SettingsActivity :
                 )
                 startActivity(intent)
             }
-
+        } else {
+            Log.w(TAG, "setupSoundSettings currently not supported for versions < Build.VERSION_CODES.O")
+        }
     }
 
     private fun setTroubleshootingClickListenersIfNecessary() {
@@ -946,9 +953,11 @@ class SettingsActivity :
 
         binding.settingsScreenSecuritySwitch.isChecked = appPreferences.isScreenSecured
 
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             binding.settingsIncognitoKeyboardSwitch.isChecked = appPreferences.isKeyboardIncognito
-
+        } else {
+            binding.settingsIncognitoKeyboardSwitch.visibility = View.GONE
+        }
 
         if (CapabilitiesUtil.isReadStatusAvailable(currentUser!!.capabilities!!.spreedCapability!!)) {
             binding.settingsReadPrivacySwitch.isChecked = !CapabilitiesUtil.isReadStatusPrivate(currentUser!!)
