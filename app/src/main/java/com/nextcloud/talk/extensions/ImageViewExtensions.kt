@@ -370,7 +370,11 @@ fun ImageView.loadTeamAvatar(viewThemeUtils: ViewThemeUtils): io.reactivex.dispo
 }
 
 fun ImageView.loadDefaultAvatar(viewThemeUtils: ViewThemeUtils): io.reactivex.disposables.Disposable {
-    val data: Any = viewThemeUtils.talk.themePlaceholderAvatar(this, R.drawable.account_circle_96dp) as Any
+    val data: Any = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        viewThemeUtils.talk.themePlaceholderAvatar(this, R.drawable.account_circle_96dp) as Any
+    } else {
+        R.drawable.account_circle_96dp
+    }
     return loadUserAvatar(data)
 }
 
