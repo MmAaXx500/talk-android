@@ -268,23 +268,17 @@ object NotificationUtils {
 
     fun isCallsNotificationChannelEnabled(context: Context): Boolean {
         val channel = getNotificationChannel(context, NotificationChannels.NOTIFICATION_CHANNEL_CALLS_V4.name)
-        if (channel != null) {
-            return isNotificationChannelEnabled(context, channel)
-        }
-        return false
+        return isNotificationChannelEnabled(context, channel)
     }
 
     fun isMessagesNotificationChannelEnabled(context: Context): Boolean {
         val channel = getNotificationChannel(context, NotificationChannels.NOTIFICATION_CHANNEL_MESSAGES_V4.name)
-        if (channel != null) {
-            return isNotificationChannelEnabled(context, channel)
-        }
-        return false
+        return isNotificationChannelEnabled(context, channel)
     }
 
-    private fun isNotificationChannelEnabled(context: Context, channel: NotificationChannel): Boolean {
+    private fun isNotificationChannelEnabled(context: Context, channel: NotificationChannel?): Boolean {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            channel.importance != NotificationManager.IMPORTANCE_NONE
+            channel != null && channel.importance != NotificationManager.IMPORTANCE_NONE
         } else {
             NotificationManagerCompat.from(context).areNotificationsEnabled()
         }
