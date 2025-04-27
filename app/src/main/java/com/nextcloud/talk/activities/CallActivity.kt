@@ -1150,6 +1150,11 @@ class CallActivity : CallBaseActivity() {
 
     @SuppressLint("MissingPermission")
     private fun startMicInputDetection() {
+        // Android 9 and below does not support simultaneous mic access
+        // Breaks: Speaking highlight, Talking time
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P)
+            return
+
         if (permissionUtil!!.isMicrophonePermissionGranted() && micInputAudioRecordThread == null) {
             micInputAudioRecorder = AudioRecord(
                 MediaRecorder.AudioSource.MIC,
