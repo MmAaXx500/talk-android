@@ -159,7 +159,6 @@
     <string name="nc_configure_cert_auth">Vyberte certifikát pro ověřování se</string>
     <string name="nc_connecting_call">Připojování…</string>
     <string name="nc_contacts_done">Hotovo</string>
-    <string name="nc_conversation_auto_delete_notice">Tato konverzace bude automaticky smazána pro kohokoli po %1$d dnech bez jakékoli aktivity.</string>
     <string name="nc_conversation_description">Popis konverzace</string>
     <string name="nc_conversation_menu_conversation_info">Informace o konverzaci</string>
     <string name="nc_conversation_menu_video_call">Videohovor</string>
@@ -310,8 +309,10 @@
     <string name="nc_manual">Nenastaveno</string>
     <string name="nc_mark_as_read">Označit jako přečtené</string>
     <string name="nc_mark_as_unread">Označit jako nepřečtené</string>
+    <string name="nc_mark_conversation_as_important">Konverzace označena jako důležitá</string>
     <string name="nc_mark_conversation_as_insensitive">Zrušeno značení konverzace coby citlivé</string>
     <string name="nc_mark_conversation_as_sensitive">Konverzace označena jako citlivá</string>
+    <string name="nc_mark_conversation_as_unimportant">Zrušeno značení konverzace coby důležité</string>
     <string name="nc_meeting_ended">Schůzka skončila</string>
     <string name="nc_message_added_to_notes">Zpráva přidána do poznámek</string>
     <string name="nc_message_failed">Nezdařilo se</string>
@@ -403,6 +404,7 @@
     <string name="nc_screen_lock_timeout_thirty">30</string>
     <string name="nc_screen_lock_timeout_three_hundred">300</string>
     <string name="nc_search">Hledat</string>
+    <string name="nc_search_clear">Vyčistit hledání</string>
     <string name="nc_select_an_account">Vyberte účet</string>
     <string name="nc_send_edit_message">Aktualizovat zprávu</string>
     <string name="nc_sensitive_conversation">Citlivá konverzace</string>
@@ -542,6 +544,7 @@
     <string name="online_status">Stav online</string>
     <string name="openConversations">Otevřít konverzace</string>
     <string name="open_in_files_app">Otevřít v aplikaci Soubory</string>
+    <string name="open_notes">Otevřít poznámky</string>
     <string name="play_pause_voice_message">Přehrát/pozastavit hlasovou zprávu</string>
     <string name="playback_speed_control">Ovládání rychlosti přehrávání</string>
     <string name="polls_add_option">Přidat volbu</string>
@@ -680,6 +683,12 @@
         <item quantity="few">Viz %d podobné zprávy</item>
         <item quantity="many">Viz %d podobných zpráv</item>
         <item quantity="other">Viz %d podobné zprávy</item>
+    </plurals>
+    <plurals name="nc_conversation_auto_delete_info">
+        <item quantity="one">Tato konverzace bude automaticky smazána pro kohokoli po %1$d dni bez jakékoli aktivity.</item>
+        <item quantity="few">Tato konverzace bude automaticky smazána pro kohokoli po %1$d dnech bez jakékoli aktivity.</item>
+        <item quantity="many">Tato konverzace bude automaticky smazána pro kohokoli po %1$d dnech bez jakékoli aktivity.</item>
+        <item quantity="other">Tato konverzace bude automaticky smazána pro kohokoli po %1$d dnech bez jakékoli aktivity.</item>
     </plurals>
     <plurals name="polls_amount_voters">
         <item quantity="one">%d hlas</item>

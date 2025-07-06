@@ -9,6 +9,7 @@
     <string name="archive_hint">Po zarchiwizowaniu rozmowa zostanie domyślnie ukryta. Wybierz filtr „Zarchiwizowane”, aby wyświetlić zarchiwizowane rozmowy. Bezpośrednie wzmianki będą nadal otrzymywane.</string>
     <string name="archived">Zarchiwizowane</string>
     <string name="archived_conversation">Zarchiwizowane %1$s</string>
+    <string name="audio_call">Rozmowa audio</string>
     <string name="audio_output_bluetooth">Bluetooth</string>
     <string name="audio_output_dialog_headline">Wyjście audio</string>
     <string name="audio_output_phone">Telefon</string>
@@ -32,8 +33,10 @@
     <string name="close">Zamknij</string>
     <string name="close_icon">Ikona zamknięcia</string>
     <string name="connection_established">Połączenie nawiązane</string>
+    <string name="connection_lost">Brak połączenia z serwerem</string>
     <string name="connection_lost_sent_messages_are_queued">Utracono połączenie - wysłane wiadomości są w kolejce</string>
     <string name="continuous_voice_message_recording">Zablokuj nagrywanie w celu ciągłego nagrywania wiadomości głosowej</string>
+    <string name="conversation_archived">Konwersacja została zarchiwizowana.</string>
     <string name="conversation_is_read_only">Rozmowa jest tylko do odczytu</string>
     <string name="conversation_read_only_failed">Nie udało się ustawić rozmowy Tylko do odczytu</string>
     <string name="conversations">Rozmowy</string>
@@ -47,6 +50,7 @@
     <string name="dnd">Nie przeszkadzać</string>
     <string name="dontClear">Nie czyść</string>
     <string name="edit">Edytuj</string>
+    <string name="edit_error_24_hours_old_message">Wiadomości starsze niż 24 godziny nie mogą być edytowane.</string>
     <string name="edit_message_icon_description">Edytuj wiadomość</string>
     <string name="emoji_category_recent">Ostatnie</string>
     <string name="encrypted">Zaszyfrowane</string>
@@ -68,6 +72,7 @@
     <string name="leave_call">Rozłącz się</string>
     <string name="left_conversation">Opuściłeś rozmowę %1$s</string>
     <string name="load_more_results">Wczytaj więcej wyników</string>
+    <string name="local_time">Czas lokalny: %1$s</string>
     <string name="lock_conversation">Zablokuj rozmowę</string>
     <string name="lock_symbol">Symbol zamknięcia</string>
     <string name="lower_hand">Opuścić rękę</string>
@@ -80,6 +85,7 @@
     <string name="menu_item_sort_by_name_z_a">Z - A</string>
     <string name="menu_item_sort_by_size_biggest_first">Od największych</string>
     <string name="menu_item_sort_by_size_smallest_first">Od najmniejszych</string>
+    <string name="message_copied">Wiadomość skopiowana</string>
     <string name="message_deleted_by_you">Wiadomość usunięta przez Ciebie</string>
     <string name="message_last_edited_by">Edytowany przez %1$s</string>
     <string name="message_poll_tap_to_open">Dotknij, aby otworzyć sondę</string>
@@ -164,6 +170,7 @@
     <string name="nc_copy_message">Kopiuj</string>
     <string name="nc_create_new_conversation">Utwórz nową rozmowę</string>
     <string name="nc_create_poll">Utwórz sondę</string>
+    <string name="nc_current_user">Ty:</string>
     <string name="nc_date_header_today">Dzisiaj</string>
     <string name="nc_date_header_yesterday">Wczoraj</string>
     <string name="nc_delete">Usuń</string>
@@ -172,6 +179,7 @@
     <string name="nc_delete_conversation_more">Jeśli usuniesz rozmowę, zostanie ona również usunięta dla wszystkich pozostałych uczestników.</string>
     <string name="nc_delete_message">Usuń</string>
     <string name="nc_delete_message_leaked_to_matterbridge">Wiadomość została pomyślnie usunięta, ale mogła przedostać się do innych usług</string>
+    <string name="nc_delete_now">Usuń teraz</string>
     <string name="nc_deleted_user">Użytkownik %1$s został usunięty</string>
     <string name="nc_demote">Zdegraduj z moderatora</string>
     <string name="nc_description_record_voice">Nagraj wiadomość głosową</string>
@@ -232,6 +240,8 @@
     <string name="nc_edit_message">Edycja</string>
     <string name="nc_edit_message_text">Edytuj wiadomość</string>
     <string name="nc_edited_by_admin">Edytowane przez administratora</string>
+    <string name="nc_event_conversation_menu">Menu rozmowy wydarzenia</string>
+    <string name="nc_event_schedule">Harmonogram</string>
     <string name="nc_expire_message_eight_hours">8 godzin</string>
     <string name="nc_expire_message_four_weeks">4 tygodnie</string>
     <string name="nc_expire_message_off">Wyłączona</string>
@@ -248,6 +258,7 @@
     <string name="nc_federation_pending_invitation_hint">Masz oczekujące zaproszenia</string>
     <string name="nc_file_browser_back">Wstecz</string>
     <string name="nc_file_storage_permission">Wymagane jest zezwolenie na dostęp do plików</string>
+    <string name="nc_filter">Filtruj rozmowy</string>
     <string name="nc_following_link">Użytkownik korzysta z łącza publicznego</string>
     <string name="nc_formatted_message_you">Ty: %1$s</string>
     <string name="nc_forward_message">Przekaż dalej</string>
@@ -259,8 +270,8 @@
     <string name="nc_guest">Gość</string>
     <string name="nc_guest_access">Dostęp dla gościa</string>
     <string name="nc_guest_access_allow_failed">Nie można włączyć/wyłączyć dostępu dla gościa.</string>
-    <string name="nc_guest_access_allow_summary">Zezwól gościom na udostępnianie linku publicznego, aby dołączyć do tej rozmowy.</string>
-    <string name="nc_guest_access_allow_title">Zezwól gościom</string>
+    <string name="nc_guest_access_allow_summary">Zezwalaj gościom na udostępnianie linku publicznego, aby dołączyć do tej rozmowy.</string>
+    <string name="nc_guest_access_allow_title">Zezwalaj gościom</string>
     <string name="nc_guest_access_password_dialog_hint">Wprowadź hasło</string>
     <string name="nc_guest_access_password_dialog_title">Hasło dostępu gościa</string>
     <string name="nc_guest_access_password_failed">Błąd podczas ustawiania/wyłączania hasła.</string>
@@ -274,8 +285,11 @@
     <string name="nc_ignore_battery_optimization_dialog_text">Optymalizacja baterii nie jest ignorowana. Należy to zmienić, aby mieć pewność, że powiadomienia działają w tle! Kliknij OK i wybierz \"Wszystkie aplikacje\" -> %1$s -> Nie optymalizuj</string>
     <string name="nc_ignore_battery_optimization_dialog_title">Zignoruj optymalizację baterii</string>
     <string name="nc_important_conversation">Ważna rozmowa</string>
+    <string name="nc_important_conversation_desc">Status użytkownika „Nie przeszkadzać” jest ignorowany dla ważnych rozmów.</string>
+    <string name="nc_invalid_time">Nieprawidłowy czas</string>
     <string name="nc_invitations">Zaproszenia</string>
     <string name="nc_join_open_conversations">Dołącz do otwartych rozmów</string>
+    <string name="nc_keep">Pozostaw</string>
     <string name="nc_last_moderator_leaving_room_warning">Zanim opuścisz rozmowę, musisz wybrać nowego moderatora</string>
     <string name="nc_last_modified">%1$s | Ostatnio zmodyfikowany: %2$s</string>
     <string name="nc_leave">Opuść rozmowę</string>
@@ -295,6 +309,12 @@
     <string name="nc_manual">Nie ustawiony</string>
     <string name="nc_mark_as_read">Oznacz jako przeczytane</string>
     <string name="nc_mark_as_unread">Oznacz jako nieprzeczytane</string>
+    <string name="nc_mark_conversation_as_important">Rozmowa oznaczona jako ważna</string>
+    <string name="nc_mark_conversation_as_insensitive">Rozmowa została odznaczona jako wrażliwa</string>
+    <string name="nc_mark_conversation_as_sensitive">Rozmowa została odznaczona jako wrażliwa</string>
+    <string name="nc_mark_conversation_as_unimportant">Rozmowa została odznaczona jako wrażliwa</string>
+    <string name="nc_meeting_ended">Spotkanie zakończone</string>
+    <string name="nc_message_added_to_notes">Wiadomość dodana do notatek</string>
     <string name="nc_message_failed">Nie powiodło się</string>
     <string name="nc_message_failed_to_send">Nie udało się wysłać wiadomości:</string>
     <string name="nc_message_offline">Niedostępny</string>
@@ -334,6 +354,7 @@
     <string name="nc_notify_me_never">Nigdy nie powiadamiaj</string>
     <string name="nc_offline">Obecnie jesteś w offline, sprawdź swoją łączność</string>
     <string name="nc_ok">OK</string>
+    <string name="nc_ongoing_meeting">Trwające spotkanie</string>
     <string name="nc_open_conversation_to_registered_users">Otwórz rozmowę dla zarejestrowanych użytkowników</string>
     <string name="nc_open_to_guest_app_users">Otwarte również dla gości aplikacji</string>
     <string name="nc_owner">Właściciel</string>
@@ -342,7 +363,7 @@
     <string name="nc_password">Hasło</string>
     <string name="nc_permissions_ask">Ustaw uprawnienia</string>
     <string name="nc_permissions_denied">Odmówiono niektórych uprawnień.</string>
-    <string name="nc_permissions_rationale_dialog_title">Zezwól na uprawnienia</string>
+    <string name="nc_permissions_rationale_dialog_title">Zezwalaj na uprawnienia</string>
     <string name="nc_permissions_settings">Otwórz ustawienia</string>
     <string name="nc_permissions_settings_hint">Nadaj uprawnienia w Ustawienia > Uprawnienia</string>
     <string name="nc_phone_book_integration_account_not_found">Nie znaleziono konta</string>
@@ -355,6 +376,9 @@
     <string name="nc_promote">Promuj na moderatora</string>
     <string name="nc_public_call_status">Rozmowa publiczna</string>
     <string name="nc_push_disabled">Powiadomienie push wyłączone</string>
+    <string name="nc_push_notification_error">Przepraszamy, wystąpił błąd: %1$s</string>
+    <string name="nc_push_notification_fetch_error">Przepraszamy, wystąpił błąd — nie można pobrać testowej wiadomości push.</string>
+    <string name="nc_push_notification_message">Powiadomienie push zostało pomyślnie wysłane. Powinieneś teraz otrzymać powiadomienie na tym urządzeniu z tytułem „Testowanie powiadomień push”.</string>
     <string name="nc_push_to_talk">Naciśnij i mów</string>
     <string name="nc_push_to_talk_desc">Gdy mikrofon jest wyłączony, kliknij i przytrzymaj, aby użyć funkcji \"Naciśnij i mów\"</string>
     <string name="nc_remind">Przypomnij mi później</string>
@@ -367,6 +391,7 @@
     <string name="nc_rename_confirm">Zmień nazwę</string>
     <string name="nc_reply">Odpowiedz</string>
     <string name="nc_reply_privately">Odpowiedz prywatnie</string>
+    <string name="nc_room_retention">Pokój został pomyślnie zachowany</string>
     <string name="nc_save_message">Zapisz</string>
     <string name="nc_save_success">Zapisano pomyślnie</string>
     <string name="nc_screen_lock_timeout_30">30 sekund</string>
@@ -379,7 +404,11 @@
     <string name="nc_screen_lock_timeout_thirty">30</string>
     <string name="nc_screen_lock_timeout_three_hundred">300</string>
     <string name="nc_search">Szukaj</string>
+    <string name="nc_search_clear">Wyczyść wyszukiwanie</string>
     <string name="nc_select_an_account">Wybierz konto</string>
+    <string name="nc_send_edit_message">Zaktualizuj wiadomość</string>
+    <string name="nc_sensitive_conversation">Rozmowa poufna</string>
+    <string name="nc_sensitive_conversation_hint">Podgląd wiadomości zostanie wyłączony na liście rozmów i w powiadomieniach.</string>
     <string name="nc_sent_a_gif" formatted="true">%1$s wysłał GIF.</string>
     <string name="nc_sent_a_gif_you">Wysłałeś GIF.</string>
     <string name="nc_sent_a_video" formatted="true">%1$s wysłał plik wideo.</string>
@@ -450,6 +479,7 @@
     <string name="nc_settings_server_eol">Wersja serwera jest zbyt stara i nie jest obsługiwana przez tę wersję aplikacji na Androida</string>
     <string name="nc_settings_server_eol_title">Niewspierany serwer</string>
     <string name="nc_settings_server_notification_app_not_installed_title">Aplikacja do powiadamiania serwera nie została zainstalowana</string>
+    <string name="nc_settings_theme_battery_saver">Ustawione przez tryb oszczędzania baterii</string>
     <string name="nc_settings_theme_dark">Ciemny</string>
     <string name="nc_settings_theme_follow_system">Użyj domyślnych ustawień systemu</string>
     <string name="nc_settings_theme_key">motyw</string>
@@ -481,6 +511,10 @@
     <string name="nc_start_time">Czas rozpoczęcia</string>
     <string name="nc_switch_account">Przełącz konto</string>
     <string name="nc_team">Zespół</string>
+    <string name="nc_test_push_button">Test powiadomień Push</string>
+    <string name="nc_test_results">Test wyników</string>
+    <string name="nc_today_meeting">Dziś o %1$s</string>
+    <string name="nc_tomorrow_meeting">Jutro o %1$s</string>
     <string name="nc_upload_choose_local_files">Wybierz pliki</string>
     <string name="nc_upload_confirm_send_multiple">Wysłać te pliki do %1$s?</string>
     <string name="nc_upload_confirm_send_single">Wysłać ten plik do %1$s?</string>
@@ -502,6 +536,7 @@
     <string name="nc_webinar">Webinarium</string>
     <string name="nc_yes">Tak</string>
     <string name="next_week">Następny tydzień</string>
+    <string name="no_conversations_archived">Brak zarchiwizowanych rozmów</string>
     <string name="no_offline_messages_saved">Nie zapisano żadnych wiadomości offline</string>
     <string name="no_phone_book_integration_due_to_permissions">Brak integracji numeru telefonu z powodu braku uprawnień</string>
     <string name="oneHour">1 godzina</string>
@@ -509,6 +544,7 @@
     <string name="online_status">Status online</string>
     <string name="openConversations">Otwarte rozmowy</string>
     <string name="open_in_files_app">Otwórz w aplikacji Pliki</string>
+    <string name="open_notes">Otwórz Notatki</string>
     <string name="play_pause_voice_message">Odtwórz/wstrzymaj wiadomość głosową</string>
     <string name="playback_speed_control">Kontrola prędkości odtwarzania</string>
     <string name="polls_add_option">Dodaj opcję</string>
@@ -640,12 +676,19 @@
     <string name="userinfo_error_text">Nie udało się pobrać osobistych informacji o użytkowniku.</string>
     <string name="userinfo_no_info_headline">Brak informacji osobistych</string>
     <string name="userinfo_no_info_text">Dodaj nazwę, zdjęcie profilowe i dane kontaktowe do swojego profilu.</string>
+    <string name="video_call">Rozmowa wideo</string>
     <string name="whats_your_status">Jaki jest Twój status?</string>
     <plurals name="see_similar_system_messages">
         <item quantity="one">Zobacz %d podobną wiadomość</item>
         <item quantity="few">Zobacz %d podobne wiadomości</item>
         <item quantity="many">Zobacz %d podobnych wiadomości</item>
         <item quantity="other">Zobacz %d podobnych wiadomości</item>
+    </plurals>
+    <plurals name="nc_conversation_auto_delete_info">
+        <item quantity="one">Ta konwersacja zostanie automatycznie usunięta dla wszystkich po %1$d dniu braku aktywności.</item>
+        <item quantity="few">Ta konwersacja zostanie automatycznie usunięta dla wszystkich po %1$d dniach braku aktywności.</item>
+        <item quantity="many">Ta konwersacja zostanie automatycznie usunięta dla wszystkich po %1$d dniach braku aktywności.</item>
+        <item quantity="other">Ta konwersacja zostanie automatycznie usunięta dla wszystkich po %1$d dniach braku aktywności.</item>
     </plurals>
     <plurals name="polls_amount_voters">
         <item quantity="one">%d głos</item>
